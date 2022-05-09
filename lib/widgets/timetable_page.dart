@@ -43,31 +43,43 @@ class _TimetablePage extends State<TimetablePage> {
         child: Column(
           children: [
             Flexible(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    child: Container(
-                      child: TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: Icon(
-                          Icons.arrow_back_rounded,
-                          size: 50,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.cyan,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(50),
+                      topRight: Radius.circular(50)),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      child: Container(
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Icon(
+                            Icons.arrow_back_rounded,
+                            size: 50,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
+                      alignment: Alignment.centerLeft,
                     ),
-                    alignment: Alignment.centerLeft,
-                  ),
-                  Material(
-                    child: Text(
-                      '${widget.info.nazwa_zespolu} ${widget.info.slupek} : bus nr. ${widget.bus}',
-                      style: TextStyle(fontSize: 35, color: Colors.indigo),
+                    Material(
+                      child: Text(
+                        '${widget.info.nazwa_zespolu.toString().toUpperCase()} ${widget.info.slupek}: BUS NR.${widget.bus}',
+                        style: TextStyle(
+                            fontSize: 35,
+                            color: Colors.white,
+                            backgroundColor: Colors.cyan),
+                      ),
                     ),
-                  ),
-                  Container()
-                ],
+                    Container()
+                  ],
+                ),
               ),
               flex: 1,
             ),

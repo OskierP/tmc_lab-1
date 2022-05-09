@@ -52,31 +52,39 @@ class _BusesPage extends State<BusesPage> {
         child: Column(
           children: [
             Flexible(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    child: Container(
-                      child: TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: Icon(
-                          Icons.clear,
-                          size: 50,
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(50),
+                        topRight: Radius.circular(50)),
+                    color: Colors.cyan),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      child: Container(
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Icon(
+                            Icons.clear,
+                            size: 50,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
+                      alignment: Alignment.centerLeft,
                     ),
-                    alignment: Alignment.centerLeft,
-                  ),
-                  Material(
-                    child: Text(
-                      '${widget.info.nazwa_zespolu} ${widget.info.slupek}',
-                      style: TextStyle(fontSize: 35,color: Colors.indigo),
+                    Material(
+                      child: Text(
+                        '${widget.info.nazwa_zespolu.toString().toUpperCase()} ${widget.info.slupek}',
+                        style: TextStyle(fontSize: 35, color: Colors.white,backgroundColor: Colors.cyan),
+                      ),
                     ),
-                  ),
-                  Container()
-                ],
+                    Container()
+                  ],
+                ),
               ),
               flex: 1,
             ),

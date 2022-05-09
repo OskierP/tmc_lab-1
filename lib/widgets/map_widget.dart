@@ -22,9 +22,6 @@ class MapWidget extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Bus> _buses = [];
-    List<Timetable> _timetables = [];
-
     var markers = useMemoized(() {
       List<Marker> markers = [];
       for (Station value in stations) {
