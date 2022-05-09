@@ -34,15 +34,10 @@ class MapWidget extends HookWidget {
           point: LatLng(
               double.parse(value.szer_geo), double.parse(value.dlug_geo)),
           builder: (ctx) => Container(
-            child: IconButton(
-              icon: const Icon(
+            child:  const Icon(
                 Icons.location_on_sharp,
                 color: Colors.red,
-              ), onPressed: () async {
-                List buses = await ApiBuses.I.getBuses(value.id_ulicy, value.slupek);
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => BusesPage(value.id_ulicy, value.slupek, buses, value)));
-             },
-            ),
+              ),
           ),
         ));
       }
@@ -65,8 +60,18 @@ class MapWidget extends HookWidget {
           subdomains: ['a', 'b', 'c'],
         ),
         MarkerClusterLayerOptions(
-          onMarkerTap: (marker) {
+          onMarkerTap: (marker) async {
             controller.move(marker.point, 18.0);
+           var value =  stations.firstWhere((element){
+              return LatLng(
+                  double.parse(element.szer_geo), double.parse(element.dlug_geo)).toString()==marker.point.toString();
+            });
+              List buses = await ApiBuses.I.getBuses(
+                  value.id_ulicy, value.slupek);
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
+                  BusesPage(value.id_ulicy, value.slupek, buses, value)));
+
+
           },
           maxClusterRadius: 120,
           size: Size(40, 40),

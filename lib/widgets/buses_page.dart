@@ -1,4 +1,5 @@
 import 'dart:html';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:tmc_lab/models/bus.dart';
@@ -68,8 +69,11 @@ class _BusesPage extends State<BusesPage> {
                     ),
                     alignment: Alignment.centerLeft,
                   ),
-                  Text(
-                    '${widget.info.nazwa_zespolu} ${widget.info.slupek}',
+                  Material(
+                    child: Text(
+                      '${widget.info.nazwa_zespolu} ${widget.info.slupek}',
+                      style: TextStyle(fontSize: 35,color: Colors.indigo),
+                    ),
                   ),
                   Container()
                 ],

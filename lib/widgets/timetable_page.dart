@@ -60,8 +60,11 @@ class _TimetablePage extends State<TimetablePage> {
                     ),
                     alignment: Alignment.centerLeft,
                   ),
-                  Text(
-                    '${widget.info.nazwa_zespolu} ${widget.info.slupek} : bus nr. ${widget.bus}',
+                  Material(
+                    child: Text(
+                      '${widget.info.nazwa_zespolu} ${widget.info.slupek} : bus nr. ${widget.bus}',
+                      style: TextStyle(fontSize: 35, color: Colors.indigo),
+                    ),
                   ),
                   Container()
                 ],
