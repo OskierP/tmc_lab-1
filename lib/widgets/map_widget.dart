@@ -9,8 +9,8 @@ import 'package:latlong2/latlong.dart';
 import 'package:tmc_lab/models/bus.dart';
 import 'package:tmc_lab/models/station.dart';
 import 'package:tmc_lab/models/time_table.dart';
-import 'package:tmc_lab/services/api_buses.dart';
-import 'package:tmc_lab/services/api_timetable.dart';
+
+import 'package:tmc_lab/services/api_service.dart';
 import 'package:tmc_lab/widgets/buses_page.dart';
 
 class MapWidget extends HookWidget {
@@ -63,7 +63,7 @@ class MapWidget extends HookWidget {
               return LatLng(
                   double.parse(element.szer_geo), double.parse(element.dlug_geo)).toString()==marker.point.toString();
             });
-              List buses = await ApiBuses.I.getBuses(
+              List buses = await ApiService.I.getBuses(
                   value.id_ulicy, value.slupek);
               Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
                   BusesPage(value.id_ulicy, value.slupek, buses, value)));

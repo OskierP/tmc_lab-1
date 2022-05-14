@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
+import 'package:tmc_lab/models/bus.dart';
 import 'package:tmc_lab/models/station.dart';
+import 'package:tmc_lab/models/time_table.dart';
 
 class ApiService {
   static ApiService I = ApiService();
@@ -52,4 +54,72 @@ class ApiService {
     cache = stations;
     return stations;
   }
+
+
+  Future<List<Bus>> getBuses(var Id, var Nr) async {
+
+    var response = await invoke(
+        "https://api.um.warszawa.pl/api/action/dbtimetable_get/?id=88cd555f-6f31-43ca-9de4-66c479ad5942&busstopId="+Id+"&busstopNr="+Nr+"&apikey=" +
+            apiKey);
+
+    List<Bus> buses = [];
+
+    final Map<String, dynamic> data = json.decode(response.body);
+    final List<dynamic> tmp = json.decode(jsonEncode(data.values.first));
+    for (var value in tmp) {
+      final List<dynamic> tmpRow = json.decode(jsonEncode(
+          (json.decode(jsonEncode(value)) as Map<dynamic, dynamic>)
+              .values
+              .first));
+      List<Map<dynamic, dynamic>> entry = List.generate(
+          tmpRow.length, (i) => json.decode(jsonEncode(tmpRow[i])));
+
+      Bus bus = Bus();
+
+      bus.linia=getValue(entry, "linia");
+      buses.add(bus);
+      //print(bus.lina);
+
+    }
+    //cache = buses;
+    return buses;
+  }
+
+
+
+  Future<List<Timetable>> getTimetable(var Id, var Nr, var bus) async {
+
+    var response = await invoke(
+        "https://api.um.warszawa.pl/api/action/dbtimetable_get/?id=e923fa0e-d96c-43f9-ae6e-60518c9f3238&busstopId="+Id+"&busstopNr="+Nr+"&line="+bus+"&apikey="+
+            apiKey);
+
+    List<Timetable> timetables = [];
+
+    final Map<String, dynamic> data = json.decode(response.body);
+    final List<dynamic> tmp = json.decode(jsonEncode(data.values.first));
+    for (var value in tmp) {
+      final List<dynamic> tmpRow = json.decode(jsonEncode(
+          (json.decode(jsonEncode(value)) as Map<dynamic, dynamic>)
+              .values
+              .first));
+      List<Map<dynamic, dynamic>> entry = List.generate(
+          tmpRow.length, (i) => json.decode(jsonEncode(tmpRow[i])));
+
+      Timetable timetable = Timetable();
+
+      timetable.czas=getValue(entry, "czas");
+      timetable.kierunek = getValue(entry, "kierunek");
+      timetable.brygada =getValue(entry, "brygada");
+      timetable.trasa=getValue(entry, "trasa");
+      timetables.add(timetable);
+
+
+    }
+
+    return timetables;
+  }
+
+
+
+
 }

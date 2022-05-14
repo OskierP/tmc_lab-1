@@ -5,39 +5,32 @@ import 'package:flutter/material.dart';
 import 'package:tmc_lab/models/bus.dart';
 import 'package:tmc_lab/models/time_table.dart';
 
-import 'package:tmc_lab/services/api_service.dart';
-
+import 'package:tmc_lab/models/location.dart';
 import 'package:tmc_lab/widgets/timetable_page.dart';
 
-class BusesPage extends StatefulWidget {
-  var busstopId, busstopNr;
-  var buses;
-  var info;
+class LocationPage extends StatefulWidget {
+  var location;
+  var busName,info;
 
-  BusesPage(this.busstopId, this.busstopNr, this.buses, this.info);
+  LocationPage(this.location, this.busName, this.info);
 
   @override
-  State<StatefulWidget> createState() => _BusesPage();
+  State<StatefulWidget> createState() => _LocationPage();
 }
 
-class _BusesPage extends State<BusesPage> {
-  List<Container> _getBuses(var busId, var busNr, var buses) {
+class _LocationPage extends State<LocationPage> {
+  List<Container> _getLocation(var locations) {
     List<Container> list = [];
-    for (Bus bus in buses) {
+    for (Location location in locations) {
       list.add(Container(
         width: MediaQuery.of(context).size.width,
         height: 40,
         child: TextButton(
           child: Text(
-            bus.linia,
+            'Lat: ${location.Lat}  Lon:${location.Lon}',//location,
             style: TextStyle(fontSize: 35, color: Colors.black),
           ),
-          onPressed: () async {
-            List timetables = await ApiService.I
-                .getTimetable(widget.busstopId, widget.busstopNr, bus.linia);
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) =>
-                    TimetablePage(widget.info, bus.linia, timetables)));
+          onPressed: () {
           },
         ),
       ));
@@ -79,7 +72,7 @@ class _BusesPage extends State<BusesPage> {
                     ),
                     Material(
                       child: Text(
-                        '${widget.info.nazwa_zespolu.toString().toUpperCase()} ${widget.info.slupek}',
+                        '${widget.info.nazwa_zespolu.toString().toUpperCase()} ${widget.info.slupek}: LOCATION OF BUS NR.${widget.busName}',
                         style: TextStyle(fontSize: 35, color: Colors.white,backgroundColor: Colors.cyan),
                       ),
                     ),
@@ -93,8 +86,8 @@ class _BusesPage extends State<BusesPage> {
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 child: Column(
-                  children: _getBuses(
-                      widget.busstopId, widget.busstopNr, widget.buses),
+                  children: _getLocation(
+                      widget.location),
                 ),
               ),
               flex: 8,
