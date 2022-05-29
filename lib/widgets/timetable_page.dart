@@ -65,7 +65,7 @@ class _TimetablePage extends State<TimetablePage> {
                     ),
                     Material(
                       child: Text(
-                        '${widget.info.nazwa_zespolu.toString().toUpperCase()} ${widget.info.slupek}: BUS NR.${widget.bus}',
+                        '${widget.info.nazwa_zespolu.toString().toUpperCase()} ${widget.info.slupek}: LINE ${widget.bus}',
                         style: const TextStyle(
                           fontSize: 35,
                           color: Colors.white,
