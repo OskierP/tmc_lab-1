@@ -67,7 +67,7 @@ class _TimetablePage extends State<TimetablePage> {
                         '${widget.info.nazwa_zespolu.toString().toUpperCase()} ${widget.info.slupek}: LINE '
                             '${widget.bus}',
                         style: const TextStyle(
-                          fontSize: 30,
+                          fontSize: 35,
                           color: Colors.white,
                         ),
                       ),
