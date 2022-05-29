@@ -97,7 +97,7 @@ class _BusesPage extends State<BusesPage> {
                   child: Text(
                     '${widget.info.nazwa_zespolu.toString().toUpperCase()} ${widget.info.slupek}',
                     style: const TextStyle(
-                      fontSize: 30,
+                      fontSize: 35,
                       color: Colors.white,
                     ),
                   ),

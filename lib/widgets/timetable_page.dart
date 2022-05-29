@@ -39,7 +39,6 @@ class _TimetablePage extends State<TimetablePage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.all(10),
         child: Column(
           children: [
             Flexible(
@@ -65,7 +64,8 @@ class _TimetablePage extends State<TimetablePage> {
                     ),
                     Material(
                       child: Text(
-                        '${widget.info.nazwa_zespolu.toString().toUpperCase()} ${widget.info.slupek}: LINE ${widget.bus}',
+                        '${widget.info.nazwa_zespolu.toString().toUpperCase()} ${widget.info.slupek}: LINE '
+                            '${widget.bus}',
                         style: const TextStyle(
                           fontSize: 35,
                           color: Colors.white,
