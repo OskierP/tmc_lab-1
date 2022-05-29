@@ -1,0 +1,3 @@
+class Bus {
+  dynamic linia;
+}
