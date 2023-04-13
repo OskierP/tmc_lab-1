@@ -25,7 +25,7 @@ class _BusesPage extends State<BusesPage> {
     for (Bus bus in buses) {
       list.add(SizedBox(
         width: MediaQuery.of(context).size.width,
-        height: 40,
+        height: 60,
         child: FutureBuilder(
           future: ApiService.I.getTimetable(
               widget.station.zespol, widget.station.slupek, bus.linia),
@@ -44,7 +44,7 @@ class _BusesPage extends State<BusesPage> {
                     child: TextButton(
                       child: BlinkText('${bus.linia} - ${text}',
                           style: TextStyle(
-                            fontSize: 35,
+                            fontSize: 25,
                             color: timeColor(text) ? Colors.red : Colors.black,
                           ),
                           endColor: Colors.black,

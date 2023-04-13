@@ -52,7 +52,7 @@ class MainView extends HookWidget {
                             width: ((MediaQuery.of(context).size.width > 700)
                                 ? 400
                                 : MediaQuery.of(context).size.width),
-                            height: MediaQuery.of(cntx).size.height / 2,
+                            height: 350,
                             child: BusesPage(buses.value, station.value, () {
                               buses.value = null;
                               station.value = null;

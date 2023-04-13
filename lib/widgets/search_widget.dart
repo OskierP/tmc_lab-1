@@ -40,7 +40,7 @@ class SearchWidget extends StatelessWidget {
                     18);
               },
               subtitle: Text(station.slupek),
-              trailing: Text('Nastepny przystanek: ${station.kierunek}'),
+              // trailing: Text('Nastepny przystanek: ${station.kierunek}'),
             ),
           ),
         ),

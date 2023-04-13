@@ -19,12 +19,12 @@ class _TimetablePage extends State<TimetablePage> {
     for (Timetable time in times) {
        if (compareTime(time.czas, widget.dateTime)) {
       list.add(SizedBox(
-        width: 200,
-        height: 40,
+        width: 140,
+        height: 120,
         child: TextButton(
           child: Text(
             '${time.czas}',
-            style: const TextStyle(fontSize: 25, color: Colors.black),
+            style: const TextStyle(fontSize: 20, color: Colors.black),
           ),
           onPressed: () async {},
         ),
@@ -37,57 +37,48 @@ class _TimetablePage extends State<TimetablePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Column(
-      children: [
-        Flexible(
-          child: Container(
-            decoration: const BoxDecoration(
-              color: Colors.blue,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Icon(
-                      Icons.arrow_back_rounded,
-                      size: 50,
-                      color: Colors.white,
-                    ),
-                  ),
-                  alignment: Alignment.centerLeft,
+    return Scaffold(
+      appBar: AppBar(backgroundColor: Colors.blueAccent,),
+      body: Container(
+          child: Column(
+        children: [
+          Flexible(
+            child: Container(
+              decoration: const BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: 60,
+                child: Center(
+                  child: Material(
+                        child: Text(
+                          '${widget.info.nazwa_zespolu.toString().toUpperCase()} ${widget.info.slupek}: LINIA '
+                          '${widget.bus}',
+                          style: const TextStyle(
+                            fontSize: 25,
+                            color: Colors.white,
+                          ),
+                        ),
+                        color: Colors.transparent,
+                      ),
                 ),
-                Material(
-                  child: Text(
-                    '${widget.info.nazwa_zespolu.toString().toUpperCase()} ${widget.info.slupek}: LINE '
-                    '${widget.bus}',
-                    style: const TextStyle(
-                      fontSize: 35,
-                      color: Colors.white,
-                    ),
-                  ),
-                  color: Colors.transparent,
-                ),
-                Container()
-              ],
+              ),
+
             ),
+            flex: 1,
           ),
-          flex: 1,
-        ),
-        Flexible(
-          child: Wrap(
-            alignment: WrapAlignment.spaceAround,
-            direction: Axis.vertical,
-            children: _getTime(widget.times),
+          Flexible(
+            child: Wrap(
+              alignment: WrapAlignment.spaceAround,
+              direction: Axis.horizontal,
+              children: _getTime(widget.times),
+            ),
+            flex: 8,
           ),
-          flex: 8,
-        ),
-      ],
-    ));
+        ],
+      )),
+    );
   }
 }
 
