@@ -69,10 +69,12 @@ class _TimetablePage extends State<TimetablePage> {
             flex: 1,
           ),
           Flexible(
-            child: Wrap(
-              alignment: WrapAlignment.spaceAround,
-              direction: Axis.horizontal,
-              children: _getTime(widget.times),
+            child: SingleChildScrollView(
+              child: Wrap(
+                alignment: WrapAlignment.spaceAround,
+                direction: Axis.horizontal,
+                children: _getTime(widget.times),
+              ),
             ),
             flex: 8,
           ),
